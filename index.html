@@ -999,16 +999,12 @@ function ckGoStep2() {
   if (waLink) {
     const tot = cartTotal();
     const its = cart.map(i => i.color + ' x' + i.qty).join(', ');
-    waLink.href = 'https://wa.me/56975915441?text=' +
-      encodeURIComponent('Hola! Quiero comprar en Ivy Grow.
-
-👤 ' + nombre +
-      '
-📦 ' + its + '
-💰 $' + tot.toLocaleString('es-CL') +
-      '
-
-Quedo atento para coordinar el pago.');
+    const msg = 'Hola! Quiero comprar en Ivy Grow.%0A%0A' +
+      '%F0%9F%91%A4 ' + encodeURIComponent(nombre) + '%0A' +
+      '%F0%9F%93%A6 ' + encodeURIComponent(its) + '%0A' +
+      '%F0%9F%92%B0 $' + encodeURIComponent(tot.toLocaleString('es-CL')) + '%0A%0A' +
+      'Quedo atento para coordinar el pago.';
+    waLink.href = 'https://wa.me/56975915441?text=' + msg;
   }
 }
 
