@@ -681,16 +681,37 @@ footer{background:var(--bg-dark);padding:32px;display:flex;align-items:center;ju
       </div>
       <div style="display:flex;flex-direction:column;gap:10px">
         <input id="ck-nombre"    type="text"  placeholder="Nombre completo *"         style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
-        <input id="ck-telefono"  type="tel"   placeholder="Teléfono / WhatsApp *"     style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
+        <div style="display:flex;border:1.5px solid #e5e7eb;border-radius:10px;overflow:hidden">
+          <span style="background:#f9fafb;padding:11px 14px;font-size:14px;color:#555;border-right:1.5px solid #e5e7eb;white-space:nowrap;display:flex;align-items:center">+569</span>
+          <input id="ck-telefono" type="tel" placeholder="12345678 *" maxlength="8" style="flex:1;padding:11px 14px;border:none;font-size:14px;outline:none;font-family:inherit;min-width:0">
+        </div>
         <input id="ck-email"        type="email" placeholder="Correo electrónico *"       style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
         <input id="ck-email2"       type="email" placeholder="Confirmar correo electrónico *" style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
         <p id="ck-email-mismatch" style="color:#dc2626;font-size:12px;display:none;margin-top:-4px">⚠️ Los correos no coinciden. Por favor verifica.</p>
         <input id="ck-calle"     type="text"  placeholder="Calle y número *"          style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
         <input id="ck-depto"     type="text"  placeholder="Depto / Casa (opcional)"   style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <input id="ck-ciudad"  type="text"  placeholder="Ciudad / Comuna *"         style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
-          <input id="ck-region"  type="text"  placeholder="Región *"                  style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
-        </div>
+        <select id="ck-region" onchange="updateComunas()" style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit;background:#fff;color:#333">
+          <option value="">Selecciona tu región *</option>
+          <option>Región de Arica y Parinacota</option>
+          <option>Región de Tarapacá</option>
+          <option>Región de Antofagasta</option>
+          <option>Región de Atacama</option>
+          <option>Región de Coquimbo</option>
+          <option>Región de Valparaíso</option>
+          <option>Región Metropolitana de Santiago</option>
+          <option>Región del Libertador General Bernardo O'Higgins</option>
+          <option>Región del Maule</option>
+          <option>Región de Ñuble</option>
+          <option>Región del Biobío</option>
+          <option>Región de La Araucanía</option>
+          <option>Región de Los Ríos</option>
+          <option>Región de Los Lagos</option>
+          <option>Región de Aysén</option>
+          <option>Región de Magallanes</option>
+        </select>
+        <select id="ck-ciudad" style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit;background:#fff;color:#333">
+          <option value="">Primero selecciona tu región *</option>
+        </select>
         <input id="ck-postal"    type="text"  placeholder="Código postal (opcional)"  style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
       </div>
       <p id="ck-error1" style="color:#dc2626;font-size:12px;margin-top:8px;display:none">Por favor completa todos los campos.</p>
@@ -712,6 +733,16 @@ footer{background:var(--bg-dark);padding:32px;display:flex;align-items:center;ju
       </div>
       <h4 style="font-size:14px;font-weight:600;color:#333;margin-bottom:12px">Elige cómo pagar:</h4>
       <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+        <label id="opt-mp" style="border:2px solid #e5e7eb;border-radius:12px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:border-color .15s">
+          <input type="radio" name="ck-pago" value="mercadopago" style="accent-color:#4caf55" onchange="ckSelectPago(this)">
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="font-size:14px;font-weight:600;color:#333">MercadoPago</div>
+              <span style="background:#009ee3;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px">RECOMENDADO</span>
+            </div>
+            <div style="font-size:12px;color:#999">Tarjeta crédito, débito Redcompra, transferencia</div>
+          </div>
+        </label>
         <label id="opt-tf" style="border:2px solid #e5e7eb;border-radius:12px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:border-color .15s">
           <input type="radio" name="ck-pago" value="transferencia" style="accent-color:#4caf55" onchange="ckSelectPago(this)">
           <div>
@@ -927,7 +958,8 @@ function handleCheckoutOverlay(e) {
 
 function ckGoStep2() {
   const nombre   = document.getElementById('ck-nombre').value.trim();
-  const telefono = document.getElementById('ck-telefono').value.trim();
+  const telefonoNum = document.getElementById('ck-telefono').value.trim();
+  const telefono = '+569' + telefonoNum;
   const email    = document.getElementById('ck-email').value.trim();
   const calle    = document.getElementById('ck-calle').value.trim();
   const depto    = document.getElementById('ck-depto').value.trim();
@@ -938,7 +970,7 @@ function ckGoStep2() {
   const email2 = document.getElementById('ck-email2').value.trim();
 
   // Validar campos obligatorios
-  if (!nombre || !telefono || !email || !email2 || !calle || !ciudad || !region) {
+  if (!nombre || !telefonoNum || !email || !email2 || !calle || !ciudad || !region) {
     document.getElementById('ck-error1').style.display = 'block';
     document.getElementById('ck-email-mismatch').style.display = 'none';
     return;
@@ -982,8 +1014,11 @@ function ckGoStep2() {
 }
 
 function ckSelectPago(radio) {
-  ['opt-tf','opt-wa'].forEach(id => document.getElementById(id).style.borderColor = '#e5e7eb');
-  const map = {transferencia:'opt-tf', whatsapp:'opt-wa'};
+  ['opt-mp','opt-tf','opt-wa'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.style.borderColor = '#e5e7eb';
+  });
+  const map = {mercadopago:'opt-mp', transferencia:'opt-tf', whatsapp:'opt-wa'};
   if (map[radio.value]) document.getElementById(map[radio.value]).style.borderColor = '#4caf55';
 }
 
@@ -992,7 +1027,7 @@ function ckBack() {
   document.getElementById('ck-step1').style.display = 'block';
 }
 
-function ckGoStep3() {
+async function ckGoStep3() {
   const pago = document.querySelector('input[name="ck-pago"]:checked');
   if (!pago) { document.getElementById('ck-error2').style.display = 'block'; return; }
   document.getElementById('ck-error2').style.display = 'none';
@@ -1014,6 +1049,62 @@ function ckGoStep3() {
   const dE = encodeURIComponent(dirFull);
 
   let html = '';
+
+  if (pago.value === 'mercadopago') {
+    // Mostrar loading mientras se crea la preferencia
+    document.getElementById('ck-step2').style.display = 'none';
+    document.getElementById('ck-step3').style.display = 'block';
+    document.getElementById('ck-payment-content').innerHTML = `
+      <div style="text-align:center;padding:32px 0">
+        <div style="font-size:36px;margin-bottom:12px">⏳</div>
+        <p style="font-size:15px;color:#666">Conectando con MercadoPago...</p>
+      </div>`;
+
+    try {
+      const response = await fetch('/.netlify/functions/create-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cart,
+          payer: {
+            nombre, email: document.getElementById('ck-email').value.trim(),
+            telefono: document.getElementById('ck-telefono').value.trim(),
+            calle, ciudad, region
+          }
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        document.getElementById('ck-payment-content').innerHTML = `
+          <div style="text-align:center">
+            <div style="font-size:48px;margin-bottom:12px">🎉</div>
+            <h3 style="font-size:17px;font-weight:700;color:#333;margin-bottom:8px">¡Pedido listo!</h3>
+            <p style="font-size:14px;color:#666;line-height:1.7;margin-bottom:24px">
+              Haz clic en el botón para completar tu pago de forma segura con MercadoPago.
+            </p>
+            <a href="${data.url}" target="_blank"
+              style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;background:#009ee3;color:#fff;border-radius:100px;font-size:16px;font-weight:700;text-decoration:none;box-sizing:border-box;box-shadow:0 4px 12px rgba(0,158,227,.3)">
+              💳 Pagar con MercadoPago
+            </a>
+            <p style="font-size:12px;color:#999;margin-top:12px">Serás redirigido a MercadoPago de forma segura</p>
+          </div>`;
+      } else {
+        throw new Error('Sin URL');
+      }
+    } catch(err) {
+      document.getElementById('ck-payment-content').innerHTML = `
+        <div style="text-align:center;padding:16px">
+          <div style="font-size:36px;margin-bottom:12px">⚠️</div>
+          <p style="font-size:14px;color:#dc2626;margin-bottom:16px">Hubo un error al conectar con MercadoPago. Por favor usa una de las otras opciones de pago.</p>
+          <button onclick="ckBack()" style="padding:11px 24px;background:none;border:1px solid #e5e7eb;color:#666;border-radius:100px;font-size:14px;cursor:pointer">← Volver</button>
+        </div>`;
+    }
+    cart = []; updateCart();
+    return;
+  }
+
   if (pago.value === 'transferencia') {
     const waText = 'https://wa.me/56975915441?text=' +
       'Hola!+Realic%C3%A9+una+transferencia+para+mi+pedido+Ivy+Grow.%0A%0A' +
@@ -1123,6 +1214,41 @@ function playVideo(src, card) {
   card.querySelector('.vid-thumb').style.display = 'none';
   wrap.style.display = 'block';
   video.play().catch(() => {});
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  COMUNAS POR REGIÓN
+// ═══════════════════════════════════════════════════════════════════════════
+const comunasPorRegion = {
+  'Región de Arica y Parinacota': ['Arica','Camarones','Putre','General Lagos'],
+  'Región de Tarapacá': ['Iquique','Alto Hospicio','Pozo Almonte','Camiña','Colchane','Huara','Pica'],
+  'Región de Antofagasta': ['Antofagasta','Mejillones','Sierra Gorda','Taltal','Calama','Ollagüe','San Pedro de Atacama','Tocopilla','María Elena'],
+  'Región de Atacama': ['Copiapó','Caldera','Tierra Amarilla','Chañaral','Diego de Almagro','Vallenar','Alto del Carmen','Freirina','Huasco'],
+  'Región de Coquimbo': ['La Serena','Coquimbo','Andacollo','La Higuera','Paiguano','Vicuña','Illapel','Canela','Los Vilos','Salamanca','Ovalle','Combarbalá','Monte Patria','Punitaqui','Río Hurtado'],
+  'Región de Valparaíso': ['Valparaíso','Casablanca','Concón','Juan Fernández','Puchuncaví','Quintero','Viña del Mar','Isla de Pascua','Los Andes','Calle Larga','Rinconada','San Esteban','La Ligua','Cabildo','Papudo','Petorca','Zapallar','Quillota','Calera','Hijuelas','La Cruz','Limache','Nogales','Olmué','San Antonio','Algarrobo','Cartagena','El Quisco','El Tabo','Santo Domingo','San Felipe','Catemu','Llaillay','Panquehue','Putaendo','Santa María','Quilpué','Villa Alemana'],
+  'Región Metropolitana de Santiago': ['Santiago','Cerrillos','Cerro Navia','Conchalí','El Bosque','Estación Central','Huechuraba','Independencia','La Cisterna','La Florida','La Granja','La Pintana','La Reina','Las Condes','Lo Barnechea','Lo Espejo','Lo Prado','Macul','Maipú','Ñuñoa','Pedro Aguirre Cerda','Peñalolén','Providencia','Pudahuel','Quilicura','Quinta Normal','Recoleta','Renca','San Joaquín','San Miguel','San Ramón','Vitacura','Puente Alto','Pirque','San José de Maipo','Colina','Lampa','Tiltil','San Bernardo','Buin','Calera de Tango','Paine','Melipilla','Alhué','Curacaví','María Pinto','San Pedro','Talagante','El Monte','Isla de Maipo','Padre Hurtado','Peñaflor'],
+  "Región del Libertador General Bernardo O'Higgins": ['Rancagua','Codegua','Coinco','Coltauco','Doñihue','Graneros','Las Cabras','Machalí','Malloa','Mostazal','Olivar','Peumo','Pichidegua','Quinta de Tilcoco','Rengo','Requínoa','San Vicente','Pichilemu','La Estrella','Litueche','Marchihue','Navidad','Paredones','San Fernando','Chépica','Chimbarongo','Lolol','Nancagua','Palmilla','Peralillo','Placilla','Pumanque','Santa Cruz'],
+  'Región del Maule': ['Talca','Constitución','Curepto','Empedrado','Maule','Pelarco','Pencahue','Río Claro','San Clemente','San Rafael','Cauquenes','Chanco','Pelluhue','Curicó','Hualañé','Licantén','Molina','Rauco','Romeral','Sagrada Familia','Teno','Vichuquén','Linares','Colbún','Longaví','Parral','Retiro','San Javier','Villa Alegre','Yerbas Buenas'],
+  'Región de Ñuble': ['Chillán','Bulnes','Chillán Viejo','El Carmen','Pemuco','Pinto','Quillón','San Ignacio','Yungay','Cobquecura','Coelemu','Ninhue','Portezuelo','Quirihue','Ránquil','Treguaco','Coihueco','Ñiquén','San Carlos','San Fabián','San Nicolás'],
+  'Región del Biobío': ['Concepción','Coronel','Chiguayante','Florida','Hualqui','Lota','Penco','San Pedro de la Paz','Santa Juana','Talcahuano','Tomé','Hualpén','Lebu','Arauco','Cañete','Contulmo','Curanilahue','Los Álamos','Tirúa','Los Ángeles','Antuco','Cabrero','Laja','Mulchén','Nacimiento','Negrete','Quilaco','Quilleco','San Rosendo','Santa Bárbara','Tucapel','Yumbel','Alto Biobío'],
+  'Región de La Araucanía': ['Temuco','Carahue','Cunco','Curarrehue','Freire','Galvarino','Gorbea','Lautaro','Loncoche','Melipeuco','Nueva Imperial','Padre Las Casas','Perquenco','Pitrufquén','Pucón','Saavedra','teodoro Schmidt','Toltén','Vilcún','Villarrica','Cholchol','Angol','Collipulli','Curacautín','Ercilla','Lonquimay','Los Sauces','Lumaco','Purén','Renaico','Traiguén','Victoria'],
+  'Región de Los Ríos': ['Valdivia','Corral','Futrono','La Unión','Lago Ranco','Lanco','Los Lagos','Máfil','Mariquina','Paillaco','Panguipulli','Río Bueno'],
+  'Región de Los Lagos': ['Puerto Montt','Calbuco','Cochamó','Fresia','Frutillar','Los Muermos','Llanquihue','Maullín','Puerto Varas','Castro','Ancud','Chonchi','Curaco de Vélez','Dalcahue','Puqueldón','Queilén','Quellón','Quemchi','Quinchao','Osorno','Puerto Octay','Purranque','Puyehue','Río Negro','San Juan de la Costa','San Pablo','Chaitén','Futaleufú','Hualaihué','Palena'],
+  'Región de Aysén': ['Coyhaique','Lago Verde','Aysén','Cisnes','Guaitecas','Cochrane','O'Higgins','Tortel','Chile Chico','Río Ibáñez'],
+  'Región de Magallanes': ['Punta Arenas','Laguna Blanca','Río Verde','San Gregorio','Cabo de Hornos','Antártica','Porvenir','Primavera','Timaukel','Natales','Torres del Paine']
+};
+
+function updateComunas() {
+  const region  = document.getElementById('ck-region').value;
+  const select  = document.getElementById('ck-ciudad');
+  select.innerHTML = '<option value="">Selecciona tu comuna *</option>';
+  if (region && comunasPorRegion[region]) {
+    comunasPorRegion[region].forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c; opt.textContent = c;
+      select.appendChild(opt);
+    });
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
