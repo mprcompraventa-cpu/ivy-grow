@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ivy Chile — Tu compañera digital de plantas</title>
+<link rel="icon" type="image/png" href="https://smartplantivy.co.uk/favicon.ico">
+<link rel="shortcut icon" href="https://smartplantivy.co.uk/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+/* COLORES EXACTOS DE LA UK */
+:root{
+  --bg:#f4f7f7;
+  --bg-alt:#edf1f2;
+  --bg-dark:#e2e8e9;
+  --green:#4caf55;
+  --green-dark:#388e3c;
+  --text:#333335;
+  --muted:#6b7280;
+  --w:860px;
+}
+
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg-alt);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{background:var(--bg);box-shadow:0 1px 0 rgba(0,0,0,.1),0 4px 16px rgba(0,0,0,.1);position:sticky;top:0;z-index:200}
+.nav-inner{max-width:var(--w);margin:0 auto;padding:0 32px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{height:34px;display:block;width:auto}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .15s}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.cart-btn{position:relative;background:none;border:none;cursor:pointer;padding:6px;color:var(--text)}
+.cart-btn svg{width:22px;height:22px}
+.cart-count{position:absolute;top:-2px;right:-2px;background:var(--green);color:#fff;font-size:9px;font-weight:700;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+
+
+/* HERO */
+.hero-wrap{background:var(--bg)}
+.hero{max-width:var(--w);margin:0 auto;padding:40px 32px 0;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:24px}
+.hero-text{padding-bottom:0}
+.hero h1{font-family:'Plus Jakarta Sans',serif;font-size:32px;font-weight:700;line-height:1.15;color:var(--text);margin-bottom:8px}
+.hero h1 .green{color:var(--green);font-style:italic}
+.hero-sub{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:24px;max-width:320px}
+.hero-btns{display:flex;gap:10px;align-items:center;margin-bottom:20px}
+.btn-shop{background:var(--green);color:#fff;padding:11px 24px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;line-height:1;transition:all .15s;box-shadow:0 2px 8px rgba(76,175,85,.3)}
+.btn-shop:hover{background:var(--green-dark);box-shadow:0 4px 14px rgba(76,175,85,.4)}
+.btn-reviews{border:1px solid var(--green);color:var(--text);background:#fff;padding:10px 18px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:6px;line-height:1;transition:all .15s;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.btn-reviews:hover{border-color:var(--green-dark);box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.btn-reviews .star{color:#f59e0b}
+
+/* HERO IMAGEN */
+.hero-img{position:relative;display:flex;align-items:center;justify-content:center}
+.hero-pot-wrap{position:relative;width:100%;max-width:340px}
+.hero-pot-img{width:100%;display:block;transition:transform .4s ease;filter:drop-shadow(0 6px 20px rgba(0,0,0,.1))}
+.hero-pot-img:hover{transform:scale(1.03)}
+
+/* PUNTOS sobre imagen */
+.dot-tip{position:absolute;width:10px;height:10px;background:var(--green);border-radius:50%;cursor:pointer;box-shadow:0 0 0 3px rgba(76,175,85,.25);z-index:10}
+.dot-tip::before{content:'';position:absolute;inset:-5px;border-radius:50%;background:rgba(76,175,85,.15);animation:ripple 2s ease-out infinite}
+@keyframes ripple{0%{transform:scale(1);opacity:1}100%{transform:scale(2.4);opacity:0}}
+.dot-tip::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#111;color:#fff;font-size:11px;font-weight:500;white-space:nowrap;padding:5px 10px;border-radius:6px;pointer-events:none;opacity:0;transition:opacity .15s}
+.dot-tip:hover::after{opacity:1}
+
+/* SELECTOR COLORES — en la misma sección hero */
+
+
+
+
+/* BARRA FEATURES ESTÁTICA */
+
+
+
+
+
+/* FEATURES */
+.features-wrap{background:var(--bg-alt)}
+.features-inner{max-width:var(--w);margin:0 auto;padding:64px 32px}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.sec-title{font-family:'Plus Jakarta Sans',serif;font-size:28px;font-weight:700;color:var(--text);margin-bottom:6px}
+.sec-title .green{color:var(--green)}
+.sec-sub{font-size:14px;color:var(--muted);line-height:1.65;max-width:480px;margin-bottom:32px}
+.feat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:36px}
+.feat-tab{padding:8px 16px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid #d1d5db;color:var(--muted);background:none;transition:all .15s;display:flex;align-items:center;gap:6px}
+.feat-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.feat-tab:hover:not(.active){border-color:#9ca3af;color:var(--text)}
+.feat-panel{display:none;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.feat-panel.active{display:grid}
+.feat-content h3{font-family:'Plus Jakarta Sans',serif;font-size:24px;font-weight:700;color:var(--text);margin-bottom:6px}
+.feat-content h3 .green{color:var(--green)}
+.feat-content p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.feat-bullets{list-style:none;display:flex;flex-direction:column;gap:10px}
+.feat-bullets li{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text)}
+.feat-bullets li::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;flex-shrink:0}
+.feat-img{border-radius:16px;overflow:hidden}
+.feat-img img{width:100%;height:360px;object-fit:cover;display:block}
+
+/* VIDEOS */
+.videos-wrap{background:var(--bg-dark);padding:64px 0}
+.videos-inner{max-width:var(--w);margin:0 auto;padding:0 32px}
+.videos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:36px}
+.vid-card{border-radius:14px;overflow:hidden;border:1px solid rgba(0,0,0,.08);transition:transform .25s;cursor:pointer;position:relative}
+.vid-card:hover{transform:scale(1.03)}
+.vid-thumb{aspect-ratio:9/16;background:var(--bg-dark);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.vid-thumb img{width:100%;height:100%;object-fit:cover;position:absolute;opacity:.85}
+.vid-play{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;position:relative;z-index:1;transition:background .2s}
+.vid-card:hover .vid-play{background:rgba(255,255,255,.95)}
+.vid-info{padding:12px;background:rgba(0,0,0,.04)}
+.vid-tag{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:3px}
+.vid-title{font-size:12px;font-weight:500;color:var(--text);line-height:1.4}
+
+/* SHOP */
+.shop-wrap{background:var(--bg)}
+.shop-inner{max-width:var(--w);margin:0 auto;padding:64px 32px}
+.shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.gallery-main{border-radius:16px;overflow:hidden;background:var(--bg-alt);margin-bottom:10px}
+.gallery-main img{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:transform .4s}
+.gallery-main:hover img{transform:scale(1.03)}
+.gallery-thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.g-thumb{border-radius:10px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .15s;background:var(--bg-alt)}
+.g-thumb.active,.g-thumb:hover{border-color:var(--green)}
+.g-thumb img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.shop-badge{display:inline-block;background:#dcfce7;color:#166534;font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;margin-bottom:12px}
+.shop-title{font-family:'Plus Jakarta Sans',serif;font-size:26px;font-weight:700;color:var(--text);margin-bottom:4px}
+.shop-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
+.shop-stars{display:flex;align-items:center;gap:6px;margin-bottom:20px}
+.shop-stars .s{color:#f59e0b;font-size:16px}
+.shop-stars span{font-size:13px;color:var(--muted)}
+.shop-price-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.shop-old{font-size:17px;color:#9ca3af;text-decoration:line-through}
+.shop-price{font-family:'Plus Jakarta Sans',serif;font-size:38px;font-weight:700;color:var(--text)}
+.shop-disc{background:#fee2e2;color:#dc2626;font-size:12px;font-weight:700;padding:4px 10px;border-radius:100px}
+.color-label{font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px}
+.shop-swatches{display:flex;gap:8px;margin-bottom:20px}
+.s-swatch{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .15s}
+.s-swatch:hover,.s-swatch.active{border-color:var(--text);transform:scale(1.15)}
+.shop-feats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.sf{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.sf::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+.btn-addcart{width:100%;padding:14px;background:var(--green);color:#fff;border:none;border-radius:100px;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 2px 8px rgba(76,175,85,.3)}
+.btn-addcart:hover{background:var(--green-dark);box-shadow:0 4px 14px rgba(76,175,85,.4)}
+.btn-ml{width:100%;padding:14px;background:#fff;color:var(--green);border:1px solid var(--green);border-radius:100px;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s;margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.btn-ml:hover{background:#dcfce7}
+.trust-row{display:flex;gap:12px;flex-wrap:wrap}
+.trust-item{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px}
+.pagos-row{margin-top:16px;padding-top:16px;border-top:1px solid #f3f4f6}
+.pagos-lbl{font-size:12px;color:var(--muted);margin-bottom:8px}
+.pagos{display:flex;gap:6px;flex-wrap:wrap}
+.pago{background:#f9fafb;border:1px solid #e5e7eb;padding:5px 12px;border-radius:6px;font-size:11px;font-weight:700;color:var(--text)}
+
+/* SPECS */
+.specs-wrap{background:var(--bg-alt)}
+.specs-inner{max-width:var(--w);margin:0 auto;padding:64px 32px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.spec-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(0,0,0,.07);font-size:14px}
+.spec-row:last-child{border:none}
+.sk{color:var(--muted)}
+.sv{font-weight:600;color:var(--text);text-align:right;max-width:55%}
+.specs-img-wrap{background:var(--bg);border-radius:16px;padding:32px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+.specs-img-wrap img{width:100%;max-width:280px}
+
+/* COMPAT */
+.compat-wrap{background:var(--bg)}
+.compat-inner{max-width:var(--w);margin:0 auto;padding:64px 32px;text-align:center}
+.compat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.compat-card{background:var(--bg-alt);border-radius:16px;padding:24px 16px;transition:all .2s}
+.compat-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.compat-icon{font-size:36px;margin-bottom:10px;display:block}
+.compat-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
+.compat-sub{font-size:12px;color:var(--muted)}
+
+/* STATS */
+.stats-wrap{background:var(--bg-dark);padding:48px 32px}
+.stats-inner{max-width:var(--w);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.stat{text-align:center;padding:24px 16px;border-right:1px solid rgba(0,0,0,.08)}
+.stat:last-child{border:none}
+.stat-n{font-family:'Plus Jakarta Sans',serif;font-size:38px;font-weight:700;color:var(--text);line-height:1}
+.stat-l{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.4}
+
+/* FAQ */
+.faq-wrap{background:var(--bg-alt)}
+.faq-inner{max-width:var(--w);margin:0 auto;padding:64px 32px}
+.faq-item{border-bottom:1px solid rgba(0,0,0,.08);padding:16px 0;cursor:pointer}
+.faq-q{font-size:15px;font-weight:600;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-ico{font-size:20px;color:var(--green);flex-shrink:0;transition:transform .25s}
+.faq-a{font-size:14px;color:var(--muted);line-height:1.7;margin-top:10px;display:none}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-ico{transform:rotate(45deg)}
+
+/* CTA */
+.cta-wrap{background:var(--bg-dark);padding:80px 32px;text-align:center;position:relative;overflow:hidden}
+.cta-wrap::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:none;pointer-events:none}
+.cta-inner{position:relative;max-width:var(--w);margin:0 auto}
+.cta-wrap h2{font-family:'Plus Jakarta Sans',serif;font-size:36px;font-weight:700;color:var(--text);margin-bottom:10px}
+.cta-wrap p{font-size:15px;color:var(--muted);margin-bottom:32px}
+.cta-price{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px}
+.cta-old{font-size:18px;color:rgba(255,255,255,.35);text-decoration:line-through}
+.cta-now{font-family:'Plus Jakarta Sans',serif;font-size:44px;font-weight:700;color:#fff}
+.cta-note{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:32px}
+.btn-cta{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;padding:15px 44px;border-radius:100px;font-size:16px;font-weight:700;text-decoration:none;transition:all .2s;box-shadow:0 2px 10px rgba(76,175,85,.35)}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(76,175,85,.45)}
+.cta-trust{margin-top:20px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+
+/* FOOTER */
+footer{background:var(--bg-dark);padding:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.foot-logo img{height:26px;opacity:.9}
+.foot-links{display:flex;gap:16px}
+.foot-links a{color:var(--muted);font-size:12px;text-decoration:none}
+.foot-copy{color:var(--muted);font-size:11px}
+
+/* CART */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;opacity:0;pointer-events:none;transition:opacity .25s}
+.cart-overlay.open{opacity:1;pointer-events:all}
+.cart-drawer{position:fixed;right:0;top:0;bottom:0;width:380px;background:#fff;z-index:501;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column}
+.cart-drawer.open{transform:translateX(0)}
+.cart-head{padding:20px 24px;border-bottom:1px solid #f3f4f6;display:flex;justify-content:space-between;align-items:center}
+.cart-head h3{font-family:'Plus Jakarta Sans',serif;font-size:20px;color:var(--text)}
+.cart-close{background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted);line-height:1}
+.cart-body{flex:1;overflow-y:auto;padding:20px 24px}
+.cart-empty{text-align:center;padding:48px 16px;color:var(--muted);font-size:14px}
+.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #f9fafb}
+.cart-item-img{width:64px;height:64px;border-radius:10px;object-fit:cover;background:var(--bg-alt);flex-shrink:0}
+.cart-item-info{flex:1}
+.cart-item-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+.cart-item-color{font-size:11px;color:var(--muted);margin-bottom:6px}
+.cart-item-price{font-size:14px;font-weight:700;color:var(--green)}
+.cart-item-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;padding:0 2px}
+.cart-foot{padding:20px 24px;border-top:1px solid #f3f4f6}
+.cart-total{display:flex;justify-content:space-between;font-size:15px;font-weight:700;color:var(--text);margin-bottom:16px}
+.cart-checkout{width:100%;padding:13px;background:var(--green);color:#fff;border:none;border-radius:100px;font-size:15px;font-weight:700;cursor:pointer;transition:background .15s}
+.cart-checkout:hover{background:var(--green-dark)}
+
+@media(max-width:700px){
+  .hero{grid-template-columns:1fr;gap:24px}
+  .hero-img-side{display:block}
+  .feat-panel.active{grid-template-columns:1fr}
+  .shop-grid{grid-template-columns:1fr}
+  .specs-inner{grid-template-columns:1fr}
+  .videos-grid{grid-template-columns:1fr 1fr}
+  .compat-grid{grid-template-columns:1fr 1fr}
+  .stats-inner{grid-template-columns:1fr 1fr}
+  nav .nav-links{display:none}
+  .cart-drawer{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#">
+      <img src="https://smartplantivy.co.uk/images/logo/logo_green_cheek_no_bg.png" class="nav-logo" alt="Ivy Chile" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span style="display:none;font-family:'Plus Jakarta Sans',serif;font-size:20px;color:#1b5e20;font-weight:700">Ivy</span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Características</a>
+      <a href="#demo">Demo</a>
+      <a href="#shop">Comprar</a>
+      <a href="#faq">Sobre Ivy</a>
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" id="cartBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Conoce <span class="green">Ivy</span>, el compañero digital de tu planta</h1>
+      <p class="hero-sub">Maceta inteligente con IA, autorriego y personalidad que hace el cuidado de plantas fácil y divertido.</p>
+      <div class="hero-btns">
+        <a href="#shop" class="btn-shop">Comprar ahora</a>
+        <a href="#" class="btn-reviews"><span class="star">★</span> Ver reseñas 4.9</a>
+      </div>
+
+    </div>
+    <div class="hero-img">
+      <div class="hero-pot-wrap">
+        <img src="https://smartplantivy.co.uk/images/product/ivy_hero_800_x_800.png" class="hero-pot-img" alt="Ivy Smart Planter">
+        <div class="dot-tip" style="left:18%;top:22%" data-tip="💧 Nivel de agua óptimo"></div>
+        <div class="dot-tip" style="right:14%;top:38%" data-tip="🌡️ Temperatura 22°C"></div>
+        <div class="dot-tip" style="left:50%;bottom:18%;transform:translateX(-50%)" data-tip="☀️ Luz excelente"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- FEATURES -->
+<div class="features-wrap" id="features">
+  <div class="features-inner">
+    <div style="text-align:center;margin-bottom:32px">
+      <div class="sec-label">Características</div>
+      <h2 class="sec-title">Las características de <span class="green">Ivy</span></h2>
+    </div>
+    <div class="feat-tabs" style="justify-content:center">
+      <button class="feat-tab active" onclick="showTab(0)">😊 Expresiones</button>
+      <button class="feat-tab" onclick="showTab(1)">💧 Autorriego</button>
+      <button class="feat-tab" onclick="showTab(2)">📡 Sensores</button>
+      <button class="feat-tab" onclick="showTab(3)">👆 Gestos</button>
+      <button class="feat-tab" onclick="showTab(4)">🌿 Plantas</button>
+      <button class="feat-tab" onclick="showTab(5)">🏠 Smart Home</button>
+    </div>
+    <div class="feat-panel active">
+      <div class="feat-content">
+        <h3><span class="green">Expresiones</span> interactivas</h3>
+        <p>Ivy comunica las necesidades de tu planta con <strong>49+ expresiones faciales</strong>, como una mascota digital que ayuda a que tus plantas prosperen.</p>
+        <ul class="feat-bullets">
+          <li>Señales de hidratación cuando necesita agua</li>
+          <li>Alertas de temperatura extrema</li>
+          <li>Indicadores de nivel de luz</li>
+          <li>49+ animaciones y estados de ánimo</li>
+        </ul>
+      </div>
+      <div class="feat-img"><img src="https://smartplantivy.co.uk/images/highlights/ivy_facial_expressions_3_upscaled.jpg" alt="Expresiones Ivy"></div>
+    </div>
+    <div class="feat-panel">
+      <div class="feat-content">
+        <h3><span class="green">Autorriego</span> inteligente</h3>
+        <p>Ivy avisa cuando tiene sed con un <strong>sistema de irrigación por capilaridad</strong> que mantiene tus plantas hidratadas hasta 2 semanas.</p>
+        <ul class="feat-bullets">
+          <li>Depósito de 120ml — hasta 2 semanas</li>
+          <li>Sistema limpio sin goteos</li>
+          <li>Monitoreo preciso previene el estrés</li>
+          <li>Te avisa cuándo recargar</li>
+        </ul>
+      </div>
+      <div class="feat-img"><img src="https://smartplantivy.co.uk/images/highlights/ivy_smart_water_refill.png" alt="Autorriego"></div>
+    </div>
+    <div class="feat-panel">
+      <div class="feat-content">
+        <h3><span class="green">7 sensores</span> de precisión</h3>
+        <p>El sistema de Ivy se adapta a las necesidades únicas de tu planta con <strong>7 sensores integrados</strong> que monitorean todo en tiempo real.</p>
+        <ul class="feat-bullets">
+          <li>Humedad del suelo en tiempo real</li>
+          <li>Temperatura y humedad ambiental</li>
+          <li>Análisis de luz ambiental</li>
+          <li>Nivel de agua del depósito</li>
+        </ul>
+      </div>
+      <div class="feat-img"><img src="https://smartplantivy.co.uk/images/highlights/ivy_blueprint_final.png" alt="Sensores"></div>
+    </div>
+    <div class="feat-panel">
+      <div class="feat-content">
+        <h3><span class="green">Gestos</span> táctiles</h3>
+        <p>Ivy reacciona a tu tacto. Interactúa con ella como nunca antes — <strong>acaríciala, despiértala y crea un vínculo</strong> especial.</p>
+        <ul class="feat-bullets">
+          <li>Golpe suave → reacción alegre</li>
+          <li>Ambos lados → abrazo virtual</li>
+          <li>Toque lateral → estado de ánimo</li>
+          <li>Caricia lenta → ciclo calmante</li>
+        </ul>
+      </div>
+      <div class="feat-img"><img src="https://smartplantivy.co.uk/images/highlights/ivy_gestures_2.jpg" alt="Gestos"></div>
+    </div>
+    <div class="feat-panel">
+      <div class="feat-content">
+        <h3>Base de datos de <span class="green">60+ plantas</span></h3>
+        <p>Ivy incluye <strong>60+ perfiles de cuidado</strong> en la app. Selecciona tu planta y Ivy ajusta automáticamente todos sus parámetros.</p>
+        <ul class="feat-bullets">
+          <li>60+ especies curadas</li>
+          <li>Rangos ideales de temperatura</li>
+          <li>Nivel de luz óptimo</li>
+          <li>Objetivos de humedad por especie</li>
+        </ul>
+      </div>
+      <div class="feat-img"><img src="https://smartplantivy.co.uk/images/highlights/ivy_database_new.webp" alt="Base de datos"></div>
+    </div>
+    <div class="feat-panel">
+      <div class="feat-content">
+        <h3>Integración <span class="green">hogar inteligente</span></h3>
+        <p>Conecta Ivy a <strong>Apple HomeKit, Google Home, Amazon Alexa y Tuya</strong> para control total desde tu celular.</p>
+        <ul class="feat-bullets">
+          <li>Compatible con HomeKit, Google y Alexa</li>
+          <li>Monitoreo remoto desde cualquier lugar</li>
+          <li>Automatizaciones personalizadas</li>
+          <li>App gratuita iOS y Android</li>
+        </ul>
+      </div>
+      <div class="feat-img"><img src="https://smartplantivy.co.uk/images/highlights/ivy_smart_home_final.jpg" alt="Smart Home"></div>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEOS -->
+<div class="videos-wrap" id="demo">
+  <div class="videos-inner">
+    <div style="text-align:center">
+      <div class="sec-label">Demo</div>
+      <h2 class="sec-title">Mira a <span class="green">Ivy</span> en acción</h2>
+    </div>
+    <div class="videos-grid">
+      <div class="vid-card" onclick="playVideo('https://smartplantivy.co.uk/videos/ghoul.mp4',this)"><div class="vid-thumb"><img src="https://smartplantivy.co.uk/videos/video-poster-ghoul.webp" alt=""><div class="vid-play">▶</div></div><div class="vid-info"><div class="vid-tag">👋 Conoce a Ivy</div><div class="vid-title">Primer unboxing</div></div></div>
+      <div class="vid-card" onclick="playVideo('https://smartplantivy.co.uk/videos/mik_zenon.mp4',this)"><div class="vid-thumb"><img src="https://smartplantivy.co.uk/videos/video-poster-mik_zenon.webp" alt=""><div class="vid-play">▶</div></div><div class="vid-info"><div class="vid-tag">⚡ Tecnología</div><div class="vid-title">Los 7 sensores</div></div></div>
+      <div class="vid-card" onclick="playVideo('https://smartplantivy.co.uk/videos/filiz.mp4',this)"><div class="vid-thumb"><img src="https://smartplantivy.co.uk/videos/video-poster-filiz.webp" alt=""><div class="vid-play">▶</div></div><div class="vid-info"><div class="vid-tag">🛠️ Setup</div><div class="vid-title">5 minutos de configuración</div></div></div>
+      <div class="vid-card" onclick="playVideo('https://smartplantivy.co.uk/videos/jali.mp4',this)"><div class="vid-thumb"><img src="https://smartplantivy.co.uk/videos/video-poster-jali.webp" alt=""><div class="vid-play">▶</div></div><div class="vid-info"><div class="vid-tag">✨ Estética</div><div class="vid-title">Ivy en tu hogar</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SHOP -->
+<div class="shop-wrap" id="shop">
+  <div class="shop-inner">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="sec-label">Tienda</div>
+      <h2 class="sec-title">Compra tu <span class="green">Ivy</span> hoy</h2>
+    </div>
+    <div class="shop-grid">
+      <div>
+        <div class="gallery-main"><img src="https://smartplantivy.co.uk/images/product/purple_plant_pot_800_x_800.jpg" alt="Ivy" id="mainImgEl"></div>
+        <div class="gallery-thumbs">
+          <div class="g-thumb active" onclick="changeImg(this,colorData[0].img)"><img src="https://smartplantivy.co.uk/images/product/purple_plant_pot_800_x_800.jpg" alt=""></div>
+          <div class="g-thumb" onclick="changeImg(this,'https://smartplantivy.co.uk/images/highlights/ivy_facial_expressions_3_upscaled.jpg')"><img src="https://smartplantivy.co.uk/images/highlights/ivy_facial_expressions_3_upscaled.jpg" alt=""></div>
+          <div class="g-thumb" onclick="changeImg(this,'https://smartplantivy.co.uk/images/display/inBox2.webp')"><img src="https://smartplantivy.co.uk/images/display/inBox2.webp" alt="" style="object-position:top"></div>
+          <div class="g-thumb" onclick="changeImg(this,'https://smartplantivy.co.uk/images/highlights/ivy_blueprint_final.png')"><img src="https://smartplantivy.co.uk/images/highlights/ivy_blueprint_final.png" alt=""></div>
+          <div class="g-thumb" onclick="changeImg(this,'https://smartplantivy.co.uk/images/highlights/ivy_gestures_2.jpg')"><img src="https://smartplantivy.co.uk/images/highlights/ivy_gestures_2.jpg" alt=""></div>
+        </div>
+      </div>
+      <div>
+        <span class="shop-badge">Gen 1 · Edición Día de la Madre</span>
+        <h2 class="shop-title">Ivy — Maceta Inteligente</h2>
+        <p class="shop-sub">Maceta con IA, autorriego y mascota digital</p>
+        <div class="shop-stars"><span class="s">★★★★★</span><span>4.9 · +152 reseñas internacionales</span></div>
+        <div style="margin-bottom:20px">
+          <div style="display:inline-block;background:#fee2e2;color:#dc2626;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:6px">Especial Día de la Madre · 20% OFF</div>
+          <div class="shop-price-row" style="margin-bottom:0">
+            <span class="shop-old">$150.000</span>
+            <span class="shop-price">$119.990</span>
+          </div>
+        </div>
+        <div class="color-label">Color: <span id="selectedColor">Morado</span></div>
+        <div class="shop-swatches">
+          <div class="s-swatch active" style="background:#9b7fc4" onclick="shopPickColor(this,'Morado',0)" title="Morado"></div>
+          <div class="s-swatch" style="background:#f5e642" onclick="shopPickColor(this,'Amarillo',1)" title="Amarillo"></div>
+          <div class="s-swatch" style="background:#7cb87c" onclick="shopPickColor(this,'Verde',2)" title="Verde"></div>
+          <div class="s-swatch" style="background:#f5a0b5" onclick="shopPickColor(this,'Rosa',3)" title="Rosa"></div>
+          <div class="s-swatch" style="background:#ffffff;border:1.5px solid #d1d5db" onclick="shopPickColor(this,'Blanco',4)" title="Blanco"></div>
+        </div>
+        <div class="shop-feats">
+          <div class="sf">49+ expresiones</div>
+          <div class="sf">7 sensores</div>
+          <div class="sf">Autorriego 2 semanas</div>
+          <div class="sf">60+ plantas en app</div>
+          <div class="sf">WiFi + Alexa + HomeKit</div>
+          <div class="sf">iOS y Android gratis</div>
+          <div class="sf">Gestos táctiles</div>
+          <div class="sf">USB-C incluido</div>
+        </div>
+        <button class="btn-addcart" onclick="addToCartPrompt()">🛒 Agregar al carrito</button>
+        <div style="background:#fff8e1;border:1px solid #f59e0b;border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:12px;color:#92400e;line-height:1.6">
+          ⚠️ <strong>Nota:</strong> Los precios en MercadoLibre pueden ser mayores debido a los cobros de la plataforma. Comprando directamente en esta página aplican los descuentos publicados.
+        </div>
+        <a href="https://articulo.mercadolibre.cl/MLC-3862491388-maceta-inteligente-con-cara-ivy-sensores-ia-autorriego-_JM?searchVariation=200065775483#polycard_client=search-desktop&searchVariation=200065775483&search_layout=grid&position=1&type=item&tracking_id=ebcd942e-a4ac-46cd-9b65-272405d5cbee" target="_blank" class="btn-ml">⚡ Comprar en MercadoLibre</a>
+        <div class="trust-row">
+          <span class="trust-item">📦 7–15 días hábiles</span>
+          <span class="trust-item">🔒 Pago seguro</span>
+          <span class="trust-item">✅ 30 días garantía</span>
+        </div>
+        <div class="pagos-row">
+          <div class="pagos-lbl">Medios de pago:</div>
+          <div class="pagos">
+            <span class="pago">Redcompra</span>
+            <span class="pago">MercadoPago</span>
+            <span class="pago">Crédito</span>
+            <span class="pago">Cuotas sin interés</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SPECS -->
+<div class="specs-wrap">
+  <div class="specs-inner">
+    <div>
+      <div class="sec-label">Especificaciones</div>
+      <h2 class="sec-title" style="margin-bottom:24px">Ivy Gen 1</h2>
+      <div class="spec-row"><span class="sk">Dimensiones</span><span class="sv">11.4 × 10 × 9.6 cm</span></div>
+      <div class="spec-row"><span class="sk">Peso</span><span class="sv">270g</span></div>
+      <div class="spec-row"><span class="sk">Depósito</span><span class="sv">120 ml (hasta 2 semanas)</span></div>
+      <div class="spec-row"><span class="sk">Expresiones</span><span class="sv">49+ animaciones</span></div>
+      <div class="spec-row"><span class="sk">Sensores</span><span class="sv">7 de alta precisión</span></div>
+      <div class="spec-row"><span class="sk">Conectividad</span><span class="sv">WiFi 2.4GHz</span></div>
+      <div class="spec-row"><span class="sk">App</span><span class="sv">Tuya Smart Life (iOS y Android)</span></div>
+      <div class="spec-row"><span class="sk">Compatible con</span><span class="sv">Alexa · Google Home · HomeKit</span></div>
+      <div class="spec-row"><span class="sk">Alimentación</span><span class="sv">USB-C incluido</span></div>
+      <div class="spec-row"><span class="sk">Plantas</span><span class="sv">60+ especies en la app</span></div>
+    </div>
+    <div class="specs-img-wrap">
+      <img src="https://smartplantivy.co.uk/images/display/inBox2.webp" alt="Contenido de la caja">
+      <p style="font-size:12px;color:var(--muted);margin-top:12px">Todo lo que viene en la caja</p>
+    </div>
+  </div>
+</div>
+
+<!-- COMPAT -->
+<div class="compat-wrap">
+  <div class="compat-inner">
+    <div class="sec-label">Ecosistema</div>
+    <h2 class="sec-title">Compatible con todo lo que <span class="green">ya usas</span></h2>
+    <p style="font-size:14px;color:var(--muted);max-width:400px;margin:8px auto 0;line-height:1.65">Controla Ivy desde tu hogar inteligente o con la app gratuita en iOS o Android.</p>
+    <div class="compat-grid">
+      <div class="compat-card"><span class="compat-icon">🍎</span><div class="compat-name">Apple HomeKit</div><div class="compat-sub">Siri · Casa App</div></div>
+      <div class="compat-card"><span class="compat-icon">🏠</span><div class="compat-name">Google Home</div><div class="compat-sub">OK Google · Android</div></div>
+      <div class="compat-card"><span class="compat-icon">🔵</span><div class="compat-name">Amazon Alexa</div><div class="compat-sub">Echo · Alexa App</div></div>
+      <div class="compat-card"><span class="compat-icon">📱</span><div class="compat-name">Tuya Smart Life</div><div class="compat-sub">iOS y Android · Gratis</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-wrap">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-n">+22M</div><div class="stat-l">unidades vendidas globalmente</div></div>
+    <div class="stat"><div class="stat-n">150+</div><div class="stat-l">países donde se usa Ivy</div></div>
+    <div class="stat"><div class="stat-n">4.9★</div><div class="stat-l">puntuación promedio global</div></div>
+    <div class="stat"><div class="stat-n">60+</div><div class="stat-l">especies en la base de datos</div></div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-wrap" id="faq">
+  <div class="faq-inner">
+    <div class="sec-label">FAQ</div>
+    <h2 class="sec-title" style="margin-bottom:32px">Preguntas <span class="green">frecuentes</span></h2>
+    <div class="faq-item"><div class="faq-q">¿Cuánto demora en llegar? <span class="faq-ico">+</span></div><div class="faq-a">El tiempo estimado es 7 a 15 días hábiles, con un máximo de 30 días. Una vez despachado recibirás número de seguimiento.</div></div>
+    <div class="faq-item"><div class="faq-q">¿Hay que dejarla enchufada? <span class="faq-ico">+</span></div><div class="faq-a">Recomendamos mantenerla conectada al USB-C para monitoreo 24/7. Tiene batería interna para uso portátil breve.</div></div>
+    <div class="faq-item"><div class="faq-q">¿Qué plantas puedo poner? <span class="faq-ico">+</span></div><div class="faq-a">Suculentas, hierbas, potus, fittonia, aloe y muchas más. La app tiene 60+ perfiles específicos y un perfil general.</div></div>
+    <div class="faq-item"><div class="faq-q">¿La app está en español? <span class="faq-ico">+</span></div><div class="faq-a">Sí. Tuya Smart Life está en español para iOS y Android. Gratuita en App Store y Google Play.</div></div>
+    <div class="faq-item"><div class="faq-q">¿Tiene garantía? <span class="faq-ico">+</span></div><div class="faq-a">30 días de garantía por defectos de fábrica. Si llega con algún defecto coordinaremos reemplazo o reembolso.</div></div>
+    <div class="faq-item"><div class="faq-q">¿Es Gen 1 o Gen 2? <span class="faq-ico">+</span></div><div class="faq-a">Ofrecemos la Gen 1: 49+ expresiones, 7 sensores, autorriego y compatibilidad total con Alexa, Google y HomeKit. La Gen 2 llegará próximamente.</div></div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="cta-wrap">
+  <div class="cta-inner">
+    <div class="sec-label" style="color:var(--green)">Día de la Madre · Stock limitado</div>
+    <h2>El regalo que nadie esperaba<br>pero todos van a querer</h2>
+    <p>Recién llega a Chile. Sé de los primeros en tenerla.</p>
+    <div class="cta-price">
+      <span class="cta-old">$150.000</span>
+      <span class="cta-now">$119.990</span>
+      <span style="background:#dc2626;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px">20% OFF · Especial Día de la Madre</span>
+    </div>
+    <p class="cta-note">Envío a todo Chile · 7–15 días hábiles</p>
+    <a href="https://articulo.mercadolibre.cl/MLC-3862491388-maceta-inteligente-con-cara-ivy-sensores-ia-autorriego-_JM?searchVariation=200065775483#polycard_client=search-desktop&searchVariation=200065775483&search_layout=grid&position=1&type=item&tracking_id=ebcd942e-a4ac-46cd-9b65-272405d5cbee" target="_blank" class="btn-cta">🛒 Comprar en MercadoLibre</a>
+    <div class="cta-trust">
+      <span>🔒 Pago seguro</span>
+      <span>📦 Envío a todo Chile</span>
+      <span>✅ Garantía por defecto de fábrica</span>
+      <span>📸 Devolución acreditada en 24 hrs</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="background:var(--bg-dark);padding:0;display:block">
+
+  <!-- Footer principal -->
+  <div style="max-width:var(--w);margin:0 auto;padding:48px 32px 32px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px">
+    
+    <!-- Columna 1: Marca -->
+    <div>
+      <div style="margin-bottom:16px">
+        <img src="https://smartplantivy.co.uk/images/logo/logo_green_cheek_no_bg.png" style="height:36px;opacity:.9" alt="Ivy Grow" onerror="this.style.display='none';document.getElementById('flt').style.display='inline'">
+        <span id="flt" style="display:none;font-family:'Plus Jakarta Sans',serif;font-size:20px;color:var(--text);font-weight:700">Ivy Grow</span>
+      </div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.7;max-width:260px;margin-bottom:20px">Llevamos vida a tus plantas con tecnología inteligente y personalidad. Chillán, Chile.</p>
+      <div style="font-size:13px;color:var(--muted)">
+        <div style="margin-bottom:4px">📧 <a href="/cdn-cgi/l/email-protection#d0bda0a2feb3bfbda0a2b1a6b5bea4b190b7bdb1b9bcfeb3bfbd" style="color:var(--muted);text-decoration:none"><span class="__cf_email__" data-cfemail="d9b4a9abf7bab6b4a9abb8afbcb7adb899beb4b8b0b5f7bab6b4">[email&#160;protected]</span></a></div>
+      </div>
+      <!-- Newsletter -->
+      <div style="margin-top:20px">
+        <p style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Suscríbete</p>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:10px">Tips de plantas y novedades.</p>
+        <div style="display:flex;gap:8px">
+          <input type="email" placeholder="tu@email.com" style="flex:1;padding:8px 12px;border:1px solid rgba(0,0,0,.15);border-radius:100px;font-size:12px;background:var(--bg);outline:none">
+          <button style="background:var(--green);color:#fff;border:none;padding:8px 16px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer">Suscribir</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna 2: Navegación -->
+    <div>
+      <p style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:16px;text-transform:uppercase;letter-spacing:.5px">Navegación</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="#" style="font-size:13px;color:var(--muted);text-decoration:none">Inicio</a>
+        <a href="#features" style="font-size:13px;color:var(--muted);text-decoration:none">Características</a>
+        <a href="#demo" style="font-size:13px;color:var(--muted);text-decoration:none">Demo</a>
+        <a href="#shop" style="font-size:13px;color:var(--muted);text-decoration:none">Tienda</a>
+        <a href="#faq" style="font-size:13px;color:var(--muted);text-decoration:none">Sobre Ivy</a>
+      </div>
+    </div>
+
+    <!-- Columna 3: Legal -->
+    <div>
+      <p style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:16px;text-transform:uppercase;letter-spacing:.5px">Legal</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="#politica-envio" onclick="openPolicy('envio')" style="font-size:13px;color:var(--muted);text-decoration:none;cursor:pointer">Política de envío</a>
+        <a href="#politica-devolucion" onclick="openPolicy('devolucion')" style="font-size:13px;color:var(--muted);text-decoration:none;cursor:pointer">Política de devolución</a>
+        <a href="#privacidad" onclick="openPolicy('privacidad')" style="font-size:13px;color:var(--muted);text-decoration:none;cursor:pointer">Privacidad</a>
+        <a href="#terminos" onclick="openPolicy('terminos')" style="font-size:13px;color:var(--muted);text-decoration:none;cursor:pointer">Términos de servicio</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer bottom -->
+  <div style="border-top:1px solid rgba(0,0,0,.08);padding:16px 32px;max-width:var(--w);margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+    <span style="font-size:12px;color:var(--muted)">© 2026 Ivy Grow · Todos los derechos reservados</span>
+    <span style="font-size:12px;color:var(--muted)">Chillán, Chile</span>
+  </div>
+</footer>
+
+<!-- MODALES DE POLÍTICAS -->
+<div id="policyOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center;padding:20px" onclick="closePolicy()">
+  <div style="background:#fff;border-radius:16px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto;padding:36px;position:relative" onclick="event.stopPropagation()">
+    <button onclick="closePolicy()" style="position:absolute;top:16px;right:20px;background:none;border:none;font-size:24px;cursor:pointer;color:#666;line-height:1">×</button>
+    <div id="policyContent"></div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<!-- MODAL AGREGADO AL CARRITO -->
+<div id="addedModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;align-items:center;justify-content:center;padding:20px">
+  <div style="background:#fff;border-radius:16px;max-width:380px;width:100%;padding:28px;text-align:center">
+    <div style="font-size:40px;margin-bottom:12px">🛒</div>
+    <h3 style="font-size:17px;font-weight:700;color:#333;margin-bottom:6px">¡Producto agregado!</h3>
+    <p style="font-size:13px;color:#666;margin-bottom:24px">Ivy fue agregada a tu carrito.</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button onclick="closeAddedModal();openCart()" style="background:#4caf55;color:#fff;border:none;padding:13px;border-radius:100px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(76,175,85,.3)">Ver carrito y pagar →</button>
+      <button onclick="closeAddedModal()" style="background:none;border:1px solid #d1d5db;color:#666;padding:12px;border-radius:100px;font-size:14px;cursor:pointer">Seguir comprando</button>
+    </div>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h3>Tu carrito <span id="cartCountLabel" style="font-size:13px;font-weight:400;color:#999"></span></h3>
+    <button class="cart-close" onclick="closeCart()">×</button>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty" id="cartEmpty" style="text-align:center;padding:48px 16px;color:#999;font-size:14px">Tu carrito está vacío 🌱</div>
+  </div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-total" style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:#333;margin-bottom:16px">
+      <span>Total</span><span id="cartTotal">$0</span>
+    </div>
+    <button onclick="showCheckoutForm()" style="width:100%;padding:14px;background:#4caf55;color:#fff;border:none;border-radius:100px;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(76,175,85,.3);margin-bottom:10px">
+      Continuar con el pago →
+    </button>
+    <div style="font-size:11px;color:#999;text-align:center">
+      O compra en <a href="https://articulo.mercadolibre.cl/MLC-3862491388-maceta-inteligente-con-cara-ivy-sensores-ia-autorriego-_JM?searchVariation=200065775483#polycard_client=search-desktop&searchVariation=200065775483&search_layout=grid&position=1&type=item&tracking_id=ebcd942e-a4ac-46cd-9b65-272405d5cbee" target="_blank" style="color:#4caf55">MercadoLibre</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CHECKOUT MODAL ══════════════════════════════════════════════════════ -->
+<div id="checkoutModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:700;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px" onclick="handleCheckoutOverlay(event)">
+  <div style="background:#fff;border-radius:20px;max-width:500px;width:100%;padding:32px;margin:auto;position:relative" onclick="event.stopPropagation()">
+    <button onclick="closeCheckout()" style="position:absolute;top:16px;right:20px;background:none;border:none;font-size:26px;cursor:pointer;color:#999;line-height:1">×</button>
+
+    <!-- PASO 1: DATOS ───────────────────────────────────────────── -->
+    <div id="ck-step1">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px">
+        <div style="background:#4caf55;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">1</div>
+        <h3 style="font-size:17px;font-weight:700;color:#333">Datos de envío</h3>
+        <span style="margin-left:auto;font-size:12px;color:#999">Paso 1 de 3</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <input id="ck-nombre"    type="text"  placeholder="Nombre completo *"         style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
+        <input id="ck-telefono"  type="tel"   placeholder="Teléfono / WhatsApp *"     style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
+        <input id="ck-email"        type="email" placeholder="Correo electrónico *"       style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
+        <input id="ck-email2"       type="email" placeholder="Confirmar correo electrónico *" style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
+        <p id="ck-email-mismatch" style="color:#dc2626;font-size:12px;display:none;margin-top:-4px">⚠️ Los correos no coinciden. Por favor verifica.</p>
+        <input id="ck-calle"     type="text"  placeholder="Calle y número *"          style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
+        <input id="ck-depto"     type="text"  placeholder="Depto / Casa (opcional)"   style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <input id="ck-ciudad"  type="text"  placeholder="Ciudad / Comuna *"         style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
+          <input id="ck-region"  type="text"  placeholder="Región *"                  style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
+        </div>
+        <input id="ck-postal"    type="text"  placeholder="Código postal (opcional)"  style="padding:11px 14px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:14px;outline:none;font-family:inherit">
+      </div>
+      <p id="ck-error1" style="color:#dc2626;font-size:12px;margin-top:8px;display:none">Por favor completa todos los campos.</p>
+      <button onclick="ckGoStep2()" style="width:100%;margin-top:18px;padding:13px;background:#4caf55;color:#fff;border:none;border-radius:100px;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(76,175,85,.3)">
+        Continuar →
+      </button>
+    </div>
+
+    <!-- PASO 2: RESUMEN + PAGO ──────────────────────────────────── -->
+    <div id="ck-step2" style="display:none">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px">
+        <div style="background:#4caf55;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">2</div>
+        <h3 style="font-size:17px;font-weight:700;color:#333">Resumen del pedido</h3>
+        <span style="margin-left:auto;font-size:12px;color:#999">Paso 2 de 3</span>
+      </div>
+      <div id="ck-resumen" style="background:#f9fafb;border-radius:12px;padding:16px;margin-bottom:16px;font-size:14px"></div>
+      <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:#333;padding:12px 0;border-top:1px solid #e5e7eb;margin-bottom:20px">
+        <span>Total a pagar</span><span id="ck-total-display" style="color:#4caf55"></span>
+      </div>
+      <h4 style="font-size:14px;font-weight:600;color:#333;margin-bottom:12px">Elige cómo pagar:</h4>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+        <label id="opt-tf" style="border:2px solid #e5e7eb;border-radius:12px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:border-color .15s">
+          <input type="radio" name="ck-pago" value="transferencia" style="accent-color:#4caf55" onchange="ckSelectPago(this)">
+          <div>
+            <div style="font-size:14px;font-weight:600;color:#333">Transferencia bancaria</div>
+            <div style="font-size:12px;color:#999">MercadoPago · cualquier banco · envía comprobante por WhatsApp</div>
+          </div>
+        </label>
+        <label id="opt-wa" style="border:2px solid #e5e7eb;border-radius:12px;padding:14px;cursor:pointer;display:flex;align-items:center;gap:12px">
+          <input type="radio" name="ck-pago" value="whatsapp" style="accent-color:#4caf55" onchange="ckSelectPago(this)">
+          <div>
+            <div style="font-size:14px;font-weight:600;color:#333">Coordinar por WhatsApp</div>
+            <div style="font-size:12px;color:#999">Te atendemos y guiamos con el pago</div>
+          </div>
+        </label>
+      </div>
+      <p id="ck-error2" style="color:#dc2626;font-size:12px;margin-bottom:8px;display:none">Por favor selecciona una forma de pago.</p>
+      <button onclick="ckGoStep3()" style="width:100%;padding:14px;background:#4caf55;color:#fff;border:none;border-radius:100px;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(76,175,85,.3);margin-bottom:10px">
+        Confirmar pedido →
+      </button>
+      <button onclick="ckBack()" style="width:100%;padding:12px;background:none;border:1px solid #e5e7eb;color:#666;border-radius:100px;font-size:14px;cursor:pointer">← Volver</button>
+    </div>
+
+    <!-- PASO 3: INSTRUCCIONES DE PAGO ──────────────────────────── -->
+    <div id="ck-step3" style="display:none">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px">
+        <div style="background:#4caf55;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0">3</div>
+        <h3 style="font-size:17px;font-weight:700;color:#333">Instrucciones de pago</h3>
+        <span style="margin-left:auto;font-size:12px;color:#999">Paso 3 de 3</span>
+      </div>
+      <div id="ck-payment-content"></div>
+      <button onclick="closeCheckout()" style="width:100%;margin-top:16px;padding:12px;background:none;border:1px solid #e5e7eb;color:#666;border-radius:100px;font-size:14px;cursor:pointer">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+//  DATOS DE COLORES
+// ═══════════════════════════════════════════════════════════════════════════
+const colorData = [
+  {name:'Morado',   img:'https://smartplantivy.co.uk/images/product/purple_plant_pot_800_x_800.jpg'},
+  {name:'Amarillo', img:'https://smartplantivy.co.uk/images/product/yellow_plant_pot_800_x_800.jpg'},
+  {name:'Verde',    img:'https://smartplantivy.co.uk/images/product/green_plant_pot_800_x_800.jpg'},
+  {name:'Rosa',     img:'https://smartplantivy.co.uk/images/product/pink_plant_pot_800_x_800.jpg'},
+  {name:'Blanco',   img:'https://smartplantivy.co.uk/images/product/white_plant_pot_800_x_800.jpg'},
+];
+const MAX_ITEMS = 3;
+const PRICE     = 119990;
+const ML_URL    = 'https://articulo.mercadolibre.cl/MLC-3862491388-maceta-inteligente-con-cara-ivy-sensores-ia-autorriego-_JM?searchVariation=200065775483';
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  ESTADO GLOBAL
+// ═══════════════════════════════════════════════════════════════════════════
+let shopColor = 'Morado';   // color seleccionado actualmente en la tienda
+
+// cart: array de { color, qty, price }
+// cada color ocupa UNA entrada; qty puede ser > 1
+let cart = [];
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  COLOR PICKER
+// ═══════════════════════════════════════════════════════════════════════════
+function shopPickColor(el, name, idx) {
+  document.querySelectorAll('.s-swatch').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  shopColor = name;
+  document.getElementById('selectedColor').textContent = name;
+  const main = document.getElementById('mainImgEl');
+  if (main) main.src = colorData[idx].img;
+  const thumbs = document.querySelectorAll('.g-thumb');
+  thumbs.forEach(t => t.classList.remove('active'));
+  if (thumbs[0]) {
+    thumbs[0].querySelector('img').src = colorData[idx].img;
+    thumbs[0].onclick = () => changeImg(thumbs[0], colorData[idx].img);
+    thumbs[0].classList.add('active');
+  }
+}
+
+function changeImg(el, src) {
+  document.querySelectorAll('.g-thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('mainImgEl').src = src;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  CARRITO — lógica corregida
+// ═══════════════════════════════════════════════════════════════════════════
+function cartTotal() {
+  return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+}
+function cartCount() {
+  return cart.reduce((sum, item) => sum + item.qty, 0);
+}
+
+function addToCartPrompt() {
+  const total = cartCount();
+  if (total >= MAX_ITEMS) {
+    alert('Máximo ' + MAX_ITEMS + ' unidades por pedido.');
+    return;
+  }
+  // Buscar si ya existe este color
+  const existing = cart.find(i => i.color === shopColor);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    const col = colorData.find(c => c.name === shopColor);
+    cart.push({ color: shopColor, qty: 1, price: PRICE, img: col ? col.img : colorData[0].img });
+  }
+  updateCart();
+  // Cerrar drawer si estaba abierto y mostrar modal
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('addedModal').style.display = 'flex';
+}
+
+function closeAddedModal() {
+  document.getElementById('addedModal').style.display = 'none';
+}
+
+function removeItem(color) {
+  cart = cart.filter(i => i.color !== color);
+  updateCart();
+}
+
+function changeQty(color, delta) {
+  const item = cart.find(i => i.color === color);
+  if (!item) return;
+  const newQty = item.qty + delta;
+  if (newQty <= 0) { removeItem(color); return; }
+  // Respetar límite máximo
+  const otherQty = cart.filter(i => i.color !== color).reduce((s,i) => s+i.qty, 0);
+  if (newQty + otherQty > MAX_ITEMS && delta > 0) {
+    alert('Máximo ' + MAX_ITEMS + ' unidades por pedido.');
+    return;
+  }
+  item.qty = newQty;
+  updateCart();
+}
+
+function updateCart() {
+  const n       = cartCount();
+  const total   = cartTotal();
+  const foot    = document.getElementById('cartFoot');
+  const body    = document.getElementById('cartBody');
+  const countEl = document.getElementById('cartCount');
+  const labelEl = document.getElementById('cartCountLabel');
+
+  countEl.textContent = n;
+  if (labelEl) labelEl.textContent = n > 0 ? '(' + n + ' item' + (n > 1 ? 's' : '') + ')' : '';
+
+  if (n === 0) {
+    foot.style.display = 'none';
+    body.innerHTML = '<div style="text-align:center;padding:48px 16px;color:#999;font-size:14px">Tu carrito está vacío 🌱</div>';
+    return;
+  }
+
+  foot.style.display = 'block';
+  document.getElementById('cartTotal').textContent = '$' + total.toLocaleString('es-CL');
+
+  body.innerHTML = cart.map(item => `
+    <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #f5f5f5;align-items:center">
+      <img src="${item.img}" style="width:60px;height:60px;border-radius:10px;object-fit:cover;background:#f0fdf4;flex-shrink:0" alt="${item.color}">
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:600;color:#333">Ivy — Maceta Inteligente</div>
+        <div style="font-size:12px;color:#999;margin-bottom:6px">Color: ${item.color}</div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <button onclick="changeQty('${item.color}',-1)" style="width:26px;height:26px;border:1px solid #e5e7eb;border-radius:50%;background:#fff;cursor:pointer;font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center">−</button>
+          <span style="font-size:14px;font-weight:600;min-width:16px;text-align:center">${item.qty}</span>
+          <button onclick="changeQty('${item.color}',1)" style="width:26px;height:26px;border:1px solid #e5e7eb;border-radius:50%;background:#fff;cursor:pointer;font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center">+</button>
+        </div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:14px;font-weight:700;color:#4caf55">$${(item.price*item.qty).toLocaleString('es-CL')}</div>
+        <button onclick="removeItem('${item.color}')" style="background:none;border:none;color:#ccc;cursor:pointer;font-size:18px;padding:0;margin-top:4px;line-height:1">×</button>
+      </div>
+    </div>`).join('');
+}
+
+function openCart() {
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartDrawer').classList.add('open');
+}
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartDrawer').classList.remove('open');
+}
+document.getElementById('cartBtn').addEventListener('click', openCart);
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  CHECKOUT — 3 pasos
+// ═══════════════════════════════════════════════════════════════════════════
+function showCheckoutForm() {
+  if (cartCount() === 0) return;
+  closeCart();
+  // Resetear pasos
+  document.getElementById('ck-step1').style.display = 'block';
+  document.getElementById('ck-step2').style.display = 'none';
+  document.getElementById('ck-step3').style.display = 'none';
+  document.getElementById('ck-error1').style.display = 'none';
+  document.getElementById('ck-email-mismatch').style.display = 'none';
+  document.getElementById('ck-email').style.borderColor = '#e5e7eb';
+  document.getElementById('ck-email2').style.borderColor = '#e5e7eb';
+  document.getElementById('checkoutModal').style.display = 'flex';
+}
+
+function closeCheckout() {
+  document.getElementById('checkoutModal').style.display = 'none';
+}
+
+function handleCheckoutOverlay(e) {
+  if (e.target === document.getElementById('checkoutModal')) closeCheckout();
+}
+
+function ckGoStep2() {
+  const nombre   = document.getElementById('ck-nombre').value.trim();
+  const telefono = document.getElementById('ck-telefono').value.trim();
+  const email    = document.getElementById('ck-email').value.trim();
+  const calle    = document.getElementById('ck-calle').value.trim();
+  const depto    = document.getElementById('ck-depto').value.trim();
+  const ciudad   = document.getElementById('ck-ciudad').value.trim();
+  const region   = document.getElementById('ck-region').value.trim();
+  const postal   = document.getElementById('ck-postal').value.trim();
+
+  const email2 = document.getElementById('ck-email2').value.trim();
+
+  // Validar campos obligatorios
+  if (!nombre || !telefono || !email || !email2 || !calle || !ciudad || !region) {
+    document.getElementById('ck-error1').style.display = 'block';
+    document.getElementById('ck-email-mismatch').style.display = 'none';
+    return;
+  }
+  document.getElementById('ck-error1').style.display = 'none';
+
+  // Validar que emails coincidan
+  if (email.toLowerCase() !== email2.toLowerCase()) {
+    document.getElementById('ck-email-mismatch').style.display = 'block';
+    document.getElementById('ck-email').style.borderColor = '#dc2626';
+    document.getElementById('ck-email2').style.borderColor = '#dc2626';
+    return;
+  }
+  document.getElementById('ck-email-mismatch').style.display = 'none';
+  document.getElementById('ck-email').style.borderColor = '#e5e7eb';
+  document.getElementById('ck-email2').style.borderColor = '#e5e7eb';
+
+  const dirFull  = calle + (depto ? ', ' + depto : '') + ', ' + ciudad + ', ' + region + (postal ? ' · CP ' + postal : '');
+  const totalAmt = cartTotal();
+
+  let resumenHTML = cart.map(item => `
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #e5e7eb;font-size:13px">
+      <div style="display:flex;align-items:center;gap:8px">
+        <img src="${item.img}" style="width:36px;height:36px;border-radius:6px;object-fit:cover">
+        <span>Ivy ${item.color} × ${item.qty}</span>
+      </div>
+      <span style="font-weight:600">$${(item.price*item.qty).toLocaleString('es-CL')}</span>
+    </div>`).join('');
+  resumenHTML += `
+    <div style="font-size:12px;color:#999;margin-top:10px;line-height:1.6">
+      👤 ${nombre} · 📞 ${telefono}<br>
+      📍 ${dirFull}
+    </div>`;
+
+  document.getElementById('ck-resumen').innerHTML = resumenHTML;
+  document.getElementById('ck-total-display').textContent = '$' + totalAmt.toLocaleString('es-CL');
+  document.getElementById('ck-step1').style.display = 'none';
+  document.getElementById('ck-step2').style.display = 'block';
+  document.querySelectorAll('input[name="ck-pago"]').forEach(r => r.checked = false);
+  ['opt-tf','opt-wa'].forEach(id => document.getElementById(id).style.borderColor = '#e5e7eb');
+}
+
+function ckSelectPago(radio) {
+  ['opt-tf','opt-wa'].forEach(id => document.getElementById(id).style.borderColor = '#e5e7eb');
+  const map = {transferencia:'opt-tf', whatsapp:'opt-wa'};
+  if (map[radio.value]) document.getElementById(map[radio.value]).style.borderColor = '#4caf55';
+}
+
+function ckBack() {
+  document.getElementById('ck-step2').style.display = 'none';
+  document.getElementById('ck-step1').style.display = 'block';
+}
+
+function ckGoStep3() {
+  const pago = document.querySelector('input[name="ck-pago"]:checked');
+  if (!pago) { document.getElementById('ck-error2').style.display = 'block'; return; }
+  document.getElementById('ck-error2').style.display = 'none';
+
+  const nombre  = document.getElementById('ck-nombre').value.trim();
+  const calle   = document.getElementById('ck-calle').value.trim();
+  const depto   = document.getElementById('ck-depto').value.trim();
+  const ciudad  = document.getElementById('ck-ciudad').value.trim();
+  const region  = document.getElementById('ck-region').value.trim();
+  const postal  = document.getElementById('ck-postal').value.trim();
+  const totalAmt= cartTotal();
+  const totalStr= '$' + totalAmt.toLocaleString('es-CL');
+  const itemsStr= cart.map(i => i.color + ' x' + i.qty).join(', ');
+  const dirFull = calle + (depto ? ', ' + depto : '') + ', ' + ciudad + ', ' + region + (postal ? ' CP ' + postal : '');
+
+  const nE = encodeURIComponent(nombre);
+  const iE = encodeURIComponent('Ivy Smart Planter - ' + itemsStr);
+  const tE = encodeURIComponent(totalStr);
+  const dE = encodeURIComponent(dirFull);
+
+  let html = '';
+  if (pago.value === 'transferencia') {
+    const waText = 'https://wa.me/56975915441?text=' +
+      'Hola!+Realic%C3%A9+una+transferencia+para+mi+pedido+Ivy+Grow.%0A%0A' +
+      '%F0%9F%91%A4+Nombre:+' + nE + '%0A' +
+      '%F0%9F%93%A6+Pedido:+' + iE + '%0A' +
+      '%F0%9F%92%B0+Monto:+' + tE + '%0A' +
+      '%F0%9F%93%8D+Direcci%C3%B3n:+' + dE + '%0A%0A' +
+      'Adjunto+el+comprobante+de+transferencia.';
+    html = `
+      <div style="background:#f9fafb;border-radius:12px;padding:16px;margin-bottom:16px;font-size:14px;line-height:2.1">
+        <div style="font-weight:700;color:#333;margin-bottom:8px">📋 Datos para transferir</div>
+        <div><span style="color:#999">Banco:</span> <strong>MercadoPago</strong></div>
+        <div><span style="color:#999">Titular:</span> <strong>Mathias Gabriel Pezo Rivera</strong></div>
+        <div><span style="color:#999">RUT:</span> <strong>17.758.783-4</strong></div>
+        <div><span style="color:#999">N° cuenta:</span> <strong>1067352530</strong></div>
+        <div><span style="color:#999">Tipo:</span> <strong>Cuenta Vista</strong></div>
+        <div style="padding-top:8px;border-top:1px solid #e5e7eb"><span style="color:#999">Monto exacto:</span> <strong style="color:#4caf55;font-size:18px">${totalStr}</strong></div>
+      </div>
+      <div style="background:#fff8e1;border:1px solid #f59e0b;border-radius:10px;padding:12px;font-size:13px;color:#92400e;line-height:1.6;margin-bottom:16px">
+        ⚠️ Una vez transferido, envía el <strong>comprobante por WhatsApp</strong> al <strong>+56 9 7591 5441</strong> con tu nombre y dirección. Procesamos tu pedido al verificar el pago.
+      </div>
+      <a href="${waText}" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;background:#25d366;color:#fff;border:none;border-radius:100px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;box-sizing:border-box">
+        💬 Enviar comprobante por WhatsApp
+      </a>`;
+  } else {
+    const waText = 'https://wa.me/56975915441?text=' +
+      'Hola!+Quiero+comprar+en+Ivy+Grow.%0A%0A' +
+      '%F0%9F%91%A4+Nombre:+' + nE + '%0A' +
+      '%F0%9F%93%A6+Pedido:+' + iE + '%0A' +
+      '%F0%9F%92%B0+Total:+' + tE + '%0A' +
+      '%F0%9F%93%8D+Direcci%C3%B3n:+' + dE + '%0A%0A' +
+      'Quedo+atento+para+coordinar+el+pago.';
+    html = `
+      <p style="font-size:14px;color:#666;line-height:1.7;margin-bottom:20px">
+        ¡Perfecto! Te atenderemos por WhatsApp y te guiaremos paso a paso con el pago. Tu pedido queda reservado.
+      </p>
+      <a href="${waText}" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;background:#25d366;color:#fff;border:none;border-radius:100px;font-size:15px;font-weight:700;cursor:pointer;text-decoration:none;box-sizing:border-box">
+        💬 Ir a WhatsApp →
+      </a>`;
+  }
+
+  document.getElementById('ck-payment-content').innerHTML = html;
+  document.getElementById('ck-step2').style.display = 'none';
+  document.getElementById('ck-step3').style.display = 'block';
+
+  // Vaciar carrito
+  cart = [];
+  updateCart();
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  FEATURES TABS
+// ═══════════════════════════════════════════════════════════════════════════
+const tabs   = document.querySelectorAll('.feat-tab');
+const panels = document.querySelectorAll('.feat-panel');
+function showTab(i) {
+  tabs.forEach((t,j) => { t.classList.toggle('active',j===i); panels[j].classList.toggle('active',j===i); });
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  FAQ
+// ═══════════════════════════════════════════════════════════════════════════
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!open) item.classList.add('open');
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  VIDEOS
+// ═══════════════════════════════════════════════════════════════════════════
+function playVideo(src, card) {
+  // Pausar todos los que estén corriendo
+  document.querySelectorAll('.vid-wrap video').forEach(v => {
+    if (!v.paused) v.pause();
+  });
+  document.querySelectorAll('.vid-wrap').forEach(w => w.style.display = 'none');
+  document.querySelectorAll('.vid-thumb').forEach(t => t.style.display = 'flex');
+
+  let wrap = card.querySelector('.vid-wrap');
+  if (!wrap) {
+    const video = document.createElement('video');
+    video.setAttribute('playsinline', '');
+    video.style.cssText = 'width:100%;aspect-ratio:9/16;object-fit:cover;display:block;';
+
+    const muteBtn = document.createElement('button');
+    muteBtn.innerHTML = '🔊';
+    muteBtn.style.cssText = 'position:absolute;bottom:10px;right:10px;z-index:5;background:rgba(0,0,0,.45);border:none;color:#fff;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;';
+    muteBtn.onclick = e => {
+      e.stopPropagation();
+      video.muted = !video.muted;
+      muteBtn.innerHTML = video.muted ? '🔇' : '🔊';
+    };
+
+    wrap = document.createElement('div');
+    wrap.className = 'vid-wrap';
+    wrap.style.cssText = 'position:relative;display:none;';
+    wrap.appendChild(video);
+    wrap.appendChild(muteBtn);
+    card.querySelector('.vid-thumb').insertAdjacentElement('afterend', wrap);
+  }
+
+  const video = wrap.querySelector('video');
+  video.src   = src;
+  card.querySelector('.vid-thumb').style.display = 'none';
+  wrap.style.display = 'block';
+  video.play().catch(() => {});
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  POLÍTICAS
+// ═══════════════════════════════════════════════════════════════════════════
+const policies = {
+  envio: { content: `<h2 style="font-size:20px;font-weight:700;color:#333;margin-bottom:16px">Política de Envío</h2><p style="font-size:14px;color:#666;line-height:1.7;margin-bottom:12px">En Ivy Grow realizamos despachos a todo Chile desde Chillán, Región de Ñuble.</p><h3 style="font-size:15px;font-weight:600;color:#333;margin:16px 0 8px">Tiempos de entrega</h3><p style="font-size:14px;color:#666;line-height:1.7;margin-bottom:12px">El tiempo estimado es de <strong>7 a 15 días hábiles</strong> desde la confirmación del pago. En casos excepcionales hasta 30 días hábiles.</p><h3 style="font-size:15px;font-weight:600;color:#333;margin:16px 0 8px">Seguimiento</h3><p style="font-size:14px;color:#666;line-height:1.7;margin-bottom:12px">Una vez despachado enviaremos el número de seguimiento al correo registrado.</p><h3 style="font-size:15px;font-weight:600;color:#333;margin:16px 0 8px">Cobertura</h3><p style="font-size:14px;color:#666;line-height:1.7">Despachos a todo Chile. No realizamos envíos internacionales.</p>` },
+  devolucion: { content: `<h2 style="font-size:20px;font-weight:700;color:#333;margin-bottom:16px">Política de Devolución y Garantía</h2><p style="font-size:14px;color:#666;line-height:1.7;margin-bottom:12px">Solo se aceptan devoluciones por <strong>defecto de fábrica</strong>. El cliente tiene <strong>24 horas desde la recepción</strong> para notificar.</p><h3 style="font-size:15px;font-weight:600;color:#333;margin:16px 0 8px">Cómo solicitar</h3><ol style="font-size:14px;color:#666;line-height:1.9;padding-left:20px;margin-bottom:12px"><li>Enviar correo a <strong>mpr.compraventa@gmail.com</strong> dentro de las primeras 24 horas.</li><li>Adjuntar <strong>fotos y videos</strong> del defecto.</li><li>Indicar número de pedido.</li></ol><h3 style="font-size:15px;font-weight:600;color:#333;margin:16px 0 8px">No aplica devolución</h3><ul style="font-size:14px;color:#666;line-height:1.9;padding-left:20px"><li>Daños por mal uso</li><li>Solicitudes después de 24 horas</li><li>Sin respaldo fotográfico o audiovisual</li></ul>` },
+  privacidad: { content: `<h2 style="font-size:20px;font-weight:700;color:#333;margin-bottom:16px">Política de Privacidad</h2><p style="font-size:14px;color:#666;line-height:1.7;margin-bottom:12px">En Ivy Grow protegemos la privacidad de nuestros clientes. Recopilamos solo la información necesaria para procesar pedidos: nombre, dirección, correo y teléfono.</p><p style="font-size:14px;color:#666;line-height:1.7">No vendemos ni compartimos datos con terceros. Consultas: <strong>mpr.compraventa@gmail.com</strong></p>` },
+  terminos: { content: `<h2 style="font-size:20px;font-weight:700;color:#333;margin-bottom:16px">Términos de Servicio</h2><p style="font-size:14px;color:#666;line-height:1.7;margin-bottom:12px">Al comprar en Ivy Grow el cliente acepta estos términos.</p><h3 style="font-size:15px;font-weight:600;color:#333;margin:16px 0 8px">Precios</h3><p style="font-size:14px;color:#666;line-height:1.7;margin-bottom:12px">Precios en CLP. Ivy Grow puede modificarlos sin previo aviso.</p><h3 style="font-size:15px;font-weight:600;color:#333;margin:16px 0 8px">Pagos</h3><p style="font-size:14px;color:#666;line-height:1.7;margin-bottom:12px">Aceptamos transferencia bancaria y MercadoPago. El pedido se procesa al confirmar el pago.</p><h3 style="font-size:15px;font-weight:600;color:#333;margin:16px 0 8px">Jurisdicción</h3><p style="font-size:14px;color:#666;line-height:1.7">Operamos bajo la legislación chilena.</p>` }
+};
+
+function openPolicy(type) {
+  event.preventDefault();
+  document.getElementById('policyContent').innerHTML = policies[type].content;
+  document.getElementById('policyOverlay').style.display = 'flex';
+}
+function closePolicy() {
+  document.getElementById('policyOverlay').style.display = 'none';
+}
+</script>
+</body>
+</html>
