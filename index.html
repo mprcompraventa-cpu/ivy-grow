@@ -1072,6 +1072,19 @@ async function ckGoStep3() {
         <p style="font-size:15px;color:#666">Conectando con MercadoPago...</p>
       </div>`;
 
+    // ── GUARDAR PEDIDO EN localStorage ANTES de redirigir ──────────────────
+    const orderData = {
+      nombre,
+      email:    document.getElementById('ck-email').value.trim(),
+      telefono: '+569' + document.getElementById('ck-telefono').value.trim(),
+      direccion: dirFull,
+      items:    cart.map(i => ({ color: i.color, qty: i.qty, price: i.price })),
+      total:    totalAmt,
+      fecha:    new Date().toISOString()
+    };
+    localStorage.setItem('ivy_pending_order', JSON.stringify(orderData));
+    // ────────────────────────────────────────────────────────────────────────
+
     try {
       const response = await fetch('/.netlify/functions/create-payment', {
         method: 'POST',
@@ -1089,6 +1102,8 @@ async function ckGoStep3() {
       const data = await response.json();
 
       if (data.url) {
+        // Carrito se limpia aquí: el usuario va a pagar, datos ya están en localStorage
+        cart = []; updateCart();
         document.getElementById('ck-payment-content').innerHTML = `
           <div style="text-align:center">
             <div style="font-size:48px;margin-bottom:12px">🎉</div>
@@ -1106,6 +1121,8 @@ async function ckGoStep3() {
         throw new Error('Sin URL');
       }
     } catch(err) {
+      // Error: NO limpiar carrito, el usuario puede intentar de nuevo
+      localStorage.removeItem('ivy_pending_order');
       document.getElementById('ck-payment-content').innerHTML = `
         <div style="text-align:center;padding:16px">
           <div style="font-size:36px;margin-bottom:12px">⚠️</div>
@@ -1113,7 +1130,6 @@ async function ckGoStep3() {
           <button onclick="ckBack()" style="padding:11px 24px;background:none;border:1px solid #e5e7eb;color:#666;border-radius:100px;font-size:14px;cursor:pointer">← Volver</button>
         </div>`;
     }
-    cart = []; updateCart();
     return;
   }
 
@@ -1262,6 +1278,93 @@ function updateComunas() {
     });
   }
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+//  RETORNO DESDE MERCADOPAGO — manejar ?pago=exitoso/fallido/pendiente
+// ═══════════════════════════════════════════════════════════════════════════
+(function handleMPReturn() {
+  const params = new URLSearchParams(window.location.search);
+  const pago   = params.get('pago');
+  if (!pago) return;
+
+  // FIX: try/catch evita crash si localStorage está corrupto
+  var raw = localStorage.getItem('ivy_pending_order');
+  var order = null;
+  if (raw) { try { order = JSON.parse(raw); } catch(e) { order = null; } }
+
+  // Limpiar URL sin recargar
+  window.history.replaceState({}, '', window.location.pathname);
+
+  if (pago === 'exitoso') {
+    localStorage.removeItem('ivy_pending_order');
+    // FIX: si no hay datos (tab cerrada / otro dispositivo), mostrar confirmación genérica
+    if (!order) {
+      var tOk = document.createElement('div');
+      tOk.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#4caf55;color:#fff;padding:14px 28px;border-radius:100px;font-size:14px;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(76,175,85,.35)';
+      tOk.textContent = '\u2705 \u00a1Pago recibido! Te contactaremos pronto para el seguimiento.';
+      document.body.appendChild(tOk);
+      setTimeout(function(){ tOk.remove(); }, 10000);
+      return;
+    }
+
+    const itemsStr = order.items.map(i => 'Ivy ' + i.color + ' \u00d7 ' + i.qty).join(', ');
+    const totalFmt = '$' + Number(order.total).toLocaleString('es-CL');
+    const fechaFmt = new Date(order.fecha).toLocaleDateString('es-CL', { day:'2-digit', month:'long', year:'numeric' });
+
+    const waMsgVendedor =
+      '%F0%9F%9B%92 *NUEVO PEDIDO IVY GROW*%0A%0A' +
+      '%F0%9F%91%A4 ' + encodeURIComponent(order.nombre)    + '%0A' +
+      '%F0%9F%93%A7 ' + encodeURIComponent(order.email)     + '%0A' +
+      '%F0%9F%93%9E ' + encodeURIComponent(order.telefono)  + '%0A' +
+      '%F0%9F%93%8D ' + encodeURIComponent(order.direccion) + '%0A%0A' +
+      '%F0%9F%93%A6 ' + encodeURIComponent(itemsStr)        + '%0A' +
+      '%F0%9F%92%B0 ' + encodeURIComponent(totalFmt)        + '%0A' +
+      '%F0%9F%93%85 ' + encodeURIComponent(fechaFmt)        + '%0A%0A' +
+      '%E2%9C%85 Pago confirmado por MercadoPago';
+    const waVendedor = 'https://wa.me/56975915441?text=' + waMsgVendedor;
+
+    const overlay = document.createElement('div');
+    overlay.id = 'orderSuccessOverlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px';
+    overlay.innerHTML =
+      '<div style="background:#fff;border-radius:20px;padding:32px 28px;max-width:440px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.2)">' +
+        '<div style="font-size:52px;margin-bottom:12px">\uD83C\uDF89</div>' +
+        '<h2 style="font-size:20px;font-weight:700;color:#333;margin-bottom:6px">\u00a1Pago confirmado!</h2>' +
+        '<p style="font-size:14px;color:#666;line-height:1.6;margin-bottom:20px">Gracias, <strong>' + order.nombre + '</strong>. Tu pedido est\u00e1 registrado y ser\u00e1 despachado en 7\u201315 d\u00edas h\u00e1biles.</p>' +
+        '<div style="background:#f9fafb;border-radius:12px;padding:16px;text-align:left;margin-bottom:20px;font-size:13px;line-height:2">' +
+          '<div><span style="color:#999">\uD83D\uDCE6 Productos:</span> <strong>' + itemsStr + '</strong></div>' +
+          '<div><span style="color:#999">\uD83D\uDCB0 Total:</span> <strong style="color:#4caf55">' + totalFmt + '</strong></div>' +
+          '<div><span style="color:#999">\uD83D\uDCCD Env\u00edo a:</span> <strong>' + order.direccion + '</strong></div>' +
+          '<div><span style="color:#999">\uD83D\uDCE7 Email:</span> <strong>' + order.email + '</strong></div>' +
+        '</div>' +
+        '<p style="font-size:12px;color:#999;margin-bottom:20px;line-height:1.6">Te contactaremos al n\u00famero <strong>' + order.telefono + '</strong> para el seguimiento del env\u00edo.</p>' +
+        '<button onclick="window.open(\'' + waVendedor + '\',\'_blank\');document.getElementById(\'orderSuccessOverlay\').remove()" ' +
+          'style="width:100%;padding:13px;background:#25d366;color:#fff;border:none;border-radius:100px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:10px">' +
+          '\uD83D\uDCAC Confirmar pedido por WhatsApp' +
+        '</button>' +
+        '<button onclick="document.getElementById(\'orderSuccessOverlay\').remove()" ' +
+          'style="width:100%;padding:12px;background:none;border:1px solid #e5e7eb;color:#666;border-radius:100px;font-size:13px;cursor:pointer">' +
+          'Cerrar' +
+        '</button>' +
+      '</div>';
+    document.body.appendChild(overlay);
+
+  } else if (pago === 'fallido') {
+    localStorage.removeItem('ivy_pending_order');
+    var t1 = document.createElement('div');
+    t1.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#dc2626;color:#fff;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(220,38,38,.3)';
+    t1.textContent = '\u26a0\ufe0f El pago no se complet\u00f3. Puedes intentarlo nuevamente.';
+    document.body.appendChild(t1);
+    setTimeout(function(){ t1.remove(); }, 6000);
+
+  } else if (pago === 'pendiente') {
+    var t2 = document.createElement('div');
+    t2.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#f59e0b;color:#fff;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(245,158,11,.3)';
+    t2.textContent = '\u23f3 Tu pago est\u00e1 siendo procesado. Te avisaremos por WhatsApp.';
+    document.body.appendChild(t2);
+    setTimeout(function(){ t2.remove(); }, 8000);
+  }
+})();
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  POLÍTICAS
